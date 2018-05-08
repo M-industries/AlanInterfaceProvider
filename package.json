@@ -1,0 +1,19 @@
+{
+  "name": "@m-industries/alan-interface-provider",
+  "version": "12.0.0",
+  "description": "Node module for the providing end of an interface on alan.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/M-industries/AlanInterfaceProvider.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "yauzl": "^2.9.1"
+  },
+  "bugs": {
+    "url": "https://github.com/M-industries/AlanInterfaceProvider/issues"
+  },
+  "homepage": "https://github.com/M-industries/AlanInterfaceProvider#readme",
+  "main": "index.js",
+  "author": "M-industries"
+}
