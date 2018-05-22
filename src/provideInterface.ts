@@ -25,6 +25,10 @@ export function provideInterface(
 	server_host,
 	server_port,
 	custom_project_package_path,
+	createSubscriptionLessRequestHandler:(
+		id:string,
+		$interface:api_interface.Cinterface
+	) => void,
 	createSubscriptionRequestHandler:(
 		id:string,
 		subscription_request:api_interface_request.Cinterface_request,
@@ -51,6 +55,7 @@ export function provideInterface(
 
 		let server = net.createServer(function (socket) {
 			var id = next_socket_id;
+			var has_connection = false;
 			next_socket_id++;
 			var connection_state = EXPECT_HAND;
 			var connection_subscription;
@@ -86,8 +91,14 @@ export function provideInterface(
 						socket.write(new Buffer(JSON.stringify(serializer_application_protocol_shake.serialize(decorator_application_protocol_shake.decorate({}, {}, function (error) { throw new Error(error); }))), "utf8"));
 						socket.write(new Buffer([ 0 ]));
 
+						has_connection = true;
 						hand_request.properties.subscribe.switch({
-							"no": null,
+							"no": function () {
+								createSubscriptionLessRequestHandler(
+									id.toString(),
+									$interface
+								);
+							},
 							"yes": function (yes__subscribe) {
 								var subscription_request_string = yes__subscribe.properties.subscription;
 								connection_subscription = decorator_interface_request.decorate(
@@ -124,7 +135,9 @@ export function provideInterface(
 				onConsumerError(id.toString(), error);
 			});
 			socket.on("close", function () {
-				onClose(id.toString());
+				if (has_connection === true) {
+					onClose(id.toString());
+				}
 			});
 		}).listen(server_port, "127.0.0.1");
 		server.on("error", function (error) {

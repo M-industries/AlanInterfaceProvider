@@ -12,7 +12,8 @@ let providing = {
 };
 
 var command_received = false;
-provideInterface(providing.host, providing.port, path.join(__dirname, "interface.pkg"), function createSubscriptionRequestHandler(id, subscription_request, notificationHandler, $interface) {
+provideInterface(providing.host, providing.port, path.join(__dirname, "interface.pkg"), function createSubscriptionLessRequestHandler(id, $interface) {},
+function createSubscriptionRequestHandler(id, subscription_request, notificationHandler, $interface) {
 	notificationHandler({
 		"type": ["initialization", {
 			"has initialization data": ["yes", {
@@ -54,7 +55,8 @@ provideInterface(providing.host, providing.port, path.join(__dirname, "interface
 			} }]
 		}]
 	});
-}, function commandRequestHandler(id, command_request, notificationHandler, $interface) {
+},
+function commandRequestHandler(id, command_request, notificationHandler, $interface) {
 	command_received = true;
 }, function (id) {
 	if (command_received === true) {
