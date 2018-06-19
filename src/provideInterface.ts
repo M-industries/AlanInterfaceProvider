@@ -139,7 +139,7 @@ export function provideInterface(
 					onClose(id.toString());
 				}
 			});
-		}).listen(server_port, "127.0.0.1");
+		}).listen(server_port, server_host);
 		server.on("error", function (error) {
 			server.close();
 			onServerError(error);

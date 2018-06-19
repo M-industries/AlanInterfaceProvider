@@ -1,6 +1,6 @@
 {
   "name": "@m-industries/alan-interface-provider",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "Node module for the providing end of an interface on alan.",
   "repository": {
     "type": "git",
