@@ -1,6 +1,6 @@
 {
   "name": "@alan-platform/interface-provider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node module for the providing end of an interface on alan.",
   "repository": {
     "type": "git",
