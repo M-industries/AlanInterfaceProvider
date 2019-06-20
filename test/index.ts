@@ -3,8 +3,8 @@ let path = require("path");
 
 // Error.stackTraceLimit = Infinity;
 
-import {provideInterface} from "@m-industries/alan-interface-provider";
-import {create as stream_handler_create} from "./node_modules/@m-industries/alan-interface-provider/lib/stream_handler";
+import {provideInterface} from "@alan-platform/interface-provider";
+import {create as stream_handler_create} from "./node_modules/@alan-platform/interface-provider/lib/stream_handler";
 
 let providing = {
 	host: "127.0.0.1",
