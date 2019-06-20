@@ -10,7 +10,7 @@ script: |
   ./build.sh
 
 before_deploy: |
-  export VERSION="published/$(jq -j '.version' < ./src/package.json)"
+  export VERSION="$(jq -j '.version' < ./src/package.json)"
   export TRAVIS_TAG="published/${VERSION}"
 
 deploy:
