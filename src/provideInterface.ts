@@ -22,8 +22,8 @@ var next_socket_id = 0;
 var EXPECT_HAND = 1, EXPECT_INVOKE = 2;
 
 export function provideInterface(
-	server_host,
-	server_port,
+	server_host: string,
+	server_port: number,
 	custom_project_package_path,
 	createSubscriptionLessRequestHandler:(
 		id:string,
@@ -48,9 +48,9 @@ export function provideInterface(
 	var $interface,
 		interface_hash;
 
-	readFiles(custom_project_package_path, function (package) {
-		$interface = decorator_interface.decorate(JSON.parse(package["package"]["interface.alan.json"].toString("utf8")), {}, function (error) { throw new Error(error); });
-		interface_hash = decorator_manifest.decorate(JSON.parse(package[".manifest"].toString("utf8")), {}, function (error) { throw new Error(error); }).properties.root
+	readFiles(custom_project_package_path, function (pkg) {
+		$interface = decorator_interface.decorate(JSON.parse(pkg["package"]["interface.alan.json"].toString("utf8")), {}, function (error) { throw new Error(error); });
+		interface_hash = decorator_manifest.decorate(JSON.parse(pkg[".manifest"].toString("utf8")), {}, function (error) { throw new Error(error); }).properties.root
 			.properties.type.cast("directory").properties.children.getEntry("interface.alan").properties.inode.properties.type.cast("file").properties.hash;
 
 		let server = net.createServer(function (socket) {
